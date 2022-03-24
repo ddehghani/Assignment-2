@@ -1,0 +1,54 @@
+<form action="../user/search" method="GET">
+  <div class="rounded border border-2 bg-light  p-4 m-4">
+    <div class="row">
+      <div class="col-lg d-grid">
+        <label for="username" class="form-label mt-2">Username</label>
+        <input type="text" name="username" class="form-control" id="username" aria-describedby="userHelp"
+         {{#if username}}value= {{username}}{{/if}}>
+        <div id="userHelp" class="form-text">The username is case sensitive</div>
+      </div>
+      <div class="col-lg d-grid">
+        <label for="phone" class="form-label mt-2">Phone Number</label>
+        <input type="text" name="phone" class="form-control" id="phone" aria-describedby="phoneHelp"
+         {{#if phone}}value= {{phone}}{{/if}}>
+        <div id="phoneHelp" class="form-text">Please use the format: xxx-xxx-xxxx</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg d-grid">
+        <button type="submit" class="btn btn-dark mt-4">Search</button>
+      </div>
+      <div class="col-lg d-grid">
+        <button type="reset" class="btn btn-dark mt-4">Clear filters</button>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="m-4 text-center">
+  {{#if users}}
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Phone Number</th>
+        <th>Books Borrowed</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+      <tr>
+        <td>{{username}}</td>
+        <td>{{phone}}</td>
+        <td>
+          {{#each borrowed_books}}
+            {{title}}&nbsp;&nbsp;
+          {{/each}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  No user with your criteria exists in the database.
+  {{/if}}
+</div>

@@ -1,0 +1,147 @@
+<form action="../user/borrow" method="POST">
+  <div class="rounded border border-2 bg-light  p-4 m-4">
+    <div class="text-center">
+      <label class="form-label mb-5 mt-2 form-label-xlg">Search and select the borrower:</label>
+    </div>
+    <div class="row">
+      <div class="col-lg d-grid">
+        <label for="username" class="form-label mt-2">Username</label>
+        <input type="text" name="username" class="form-control" id="username" aria-describedby="userHelp"
+         {{#if username}}value= {{username}}{{/if}}>
+        <div id="userHelp" class="form-text">The username is case sensitive</div>
+      </div>
+      <div class="col-lg d-grid">
+        <label for="phone" class="form-label mt-2">Phone Number</label>
+        <input type="text" name="phone" class="form-control" id="phone" aria-describedby="phoneHelp"
+         {{#if phone}}value= {{phone}}{{/if}}>
+        <div id="phoneHelp" class="form-text">Please use the format: xxx-xxx-xxxx</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg d-grid">
+        <button type="submit" class="btn btn-dark mt-4">Search</button>
+      </div>
+      <div class="col-lg d-grid">
+        <button type="reset" class="btn btn-dark mt-4">Clear Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-4 text-center">
+    {{#if users}}
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Phone Number</th>
+          <th>Books Borrowed</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+        <tr>
+          <td>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="userSelect" id="{{username}}" value="{{username}}" onchange="this.form.submit();"{{#if checked}}checked{{/if}} />
+              <label class="form-check-label" for="{{username}}">
+                {{username}}
+              </label>
+            </div>
+          </td>
+          <td>{{phone}}</td>
+          <td>
+            {{#each borrowed_books}}
+              {{title}}&nbsp;&nbsp;
+            {{/each}}
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    No user with your criteria exists in the database.
+    {{/if}}
+  </div>
+
+  {{#if userSelect}}
+  <div class="rounded border border-2 bg-light  p-4 m-4">
+      <div class="text-center">
+        <label class="form-label mb-5 mt-2 form-label-xlg">Search and select the book you want to borrow:</label>
+      </div>
+      <div class="row">
+        <div class="col-lg d-grid">
+          <label for="id" class="form-label mt-2">ID</label>
+          <input type="text" name="id" class="form-control" id="id" aria-describedby="idHelp"
+            {{#if id}}value= {{id}}{{/if}}>
+          <div id="idHelp" class="form-text">ID needs to be a positive integer</div>
+        </div>
+        <div class="col-lg d-grid">
+          <label for="title" class="form-label mt-2">Title</label>
+          <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+          {{#if title}}value= {{title}}{{/if}}>
+          <div id="titleHelp" class="form-text">No space should follow the title</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg d-grid">
+          <button type="submit" class="btn btn-dark mt-4">Search</button>
+        </div>
+        <div class="col-lg d-grid">
+          <button type="reset" class="btn btn-dark mt-4">Clear filters</button>
+        </div>
+      </div>
+  </div>
+
+  <div class="m-4 text-center">
+    {{#if books}}
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Inventory count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each books}}
+        <tr>
+          <td>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="bookSelect" id="{{id}}" value="{{id}}" onchange="this.form.submit();" {{#if checked}}checked{{/if}} />
+              <label class="form-check-label" for="{{id}}">
+                {{id}}
+              </label>
+            </div>
+          </td>
+          <td>{{title}}</td>
+          <td>{{inventory_count}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    No book with your criteria exists in the database.
+    {{/if}}
+  </div>
+  {{/if}}
+
+  {{#if bookSelect}}
+  <div class="d-grid m-4 text-center">
+    <button type="submit" class="btn btn-success my-3" onclick="this.form.elements['borrow'].value='true';">Borrow</button>
+  </div>
+  {{/if}}
+
+  <input type="hidden" id="borrow" name="borrow" value="false">
+</form>
+
+{{#if success}}
+<div class="m-4 p-3 text-center bg-success text-white rounded-pill border border-2">
+  Book was successfully borrowed!
+</div>
+{{/if}}
+{{#if error}}
+<div class="m-4 p-3 text-center bg-danger text-white rounded-pill border border-2">
+  Couldn't borrow the book! <br>
+  Error: {{error}}
+</div>
+{{/if}}

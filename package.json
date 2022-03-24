@@ -1,0 +1,23 @@
+{
+  "name": "assignment2",
+  "version": "1.0.0",
+  "description": "4020 Assignment 2",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddehghani/4020a2.git"
+  },
+  "author": "Davood Dehghani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ddehghani/4020a2/issues"
+  },
+  "homepage": "https://github.com/ddehghani/4020a2#readme",
+  "dependencies": {
+    "winston": "^3.6.0"
+  }
+}

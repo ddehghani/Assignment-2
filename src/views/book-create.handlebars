@@ -1,0 +1,37 @@
+<form action="../book/create" method="POST">
+  <div class="rounded border border-2 bg-light  p-4 m-4">
+    <div class="row">
+      <div class="col-lg d-grid">
+        <label for="title" class="form-label mt-2">Title</label>
+        <input type="text" name="title" class="form-control" id="title" aria-describedby="titleHelp"
+         {{#if title}}value= {{title}}{{/if}}>
+        <div id="titleHelp" class="form-text">No space should follow the title</div>
+      </div>
+      <div class="col-lg d-grid">
+        <label for="inventory_count" class="form-label mt-2">Inventory Count</label>
+        <input type="text" name="inventory_count" class="form-control" id="inventory_count" aria-describedby="inventory_countHelp"
+         {{#if inventory_count}}value= {{inventory_count}}{{/if}}>
+        <div id="inventory_countHelp" class="form-text">Inventory Count should be a positive integer</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg d-grid">
+        <button type="submit" class="btn btn-dark mt-4">Create Book</button>
+      </div>
+      <div class="col-lg d-grid">
+        <button type="reset" class="btn btn-dark mt-4">Clear Form</button>
+      </div>
+    </div>
+  </div>
+</form>
+{{#if success}}
+<div class="m-4 p-3 text-center bg-success text-white rounded-pill border border-2">
+  Book was successfully created!
+</div>
+{{/if}}
+{{#if error}}
+<div class="m-4 p-3 text-center bg-danger text-white rounded-pill border border-2">
+  Couldn't create a new book! <br>
+  Error: {{error}}
+</div>
+{{/if}}

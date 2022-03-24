@@ -1,0 +1,37 @@
+<form action="../user/create" method="POST">
+  <div class="rounded border border-2 bg-light  p-4 m-4">
+    <div class="row">
+      <div class="col-lg d-grid">
+        <label for="username" class="form-label mt-2">Username</label>
+        <input type="text" name="username" class="form-control" id="username" aria-describedby="userHelp"
+         {{#if username}}value= {{username}}{{/if}}>
+        <div id="userHelp" class="form-text">The username is case sensitive</div>
+      </div>
+      <div class="col-lg d-grid">
+        <label for="phone" class="form-label mt-2">Phone Number</label>
+        <input type="text" name="phone" class="form-control" id="phone" aria-describedby="phoneHelp"
+         {{#if phone}}value= {{phone}}{{/if}}>
+        <div id="phoneHelp" class="form-text">Please use the format: xxx-xxx-xxxx</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg d-grid">
+        <button type="submit" class="btn btn-dark mt-4">Create User</button>
+      </div>
+      <div class="col-lg d-grid">
+        <button type="reset" class="btn btn-dark mt-4">Clear Form</button>
+      </div>
+    </div>
+  </div>
+</form>
+{{#if success}}
+<div class="m-4 p-3 text-center bg-success text-white rounded-pill border border-2">
+  User was successfully created!
+</div>
+{{/if}}
+{{#if error}}
+<div class="m-4 p-3 text-center bg-danger text-white rounded-pill border border-2">
+  Couldn't create a new user! <br>
+  Error: {{error}}
+</div>
+{{/if}}

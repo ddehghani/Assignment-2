@@ -1,0 +1,123 @@
+<form action="../user/return" method="POST">
+  <div class="rounded border border-2 bg-light  p-4 m-4">
+    <div class="text-center">
+      <label class="form-label mb-5 mt-2 form-label-xlg">Search and select the borrower:</label>
+    </div>
+    <div class="row">
+      <div class="col-lg d-grid">
+        <label for="username" class="form-label mt-2">Username</label>
+        <input type="text" name="username" class="form-control" id="username" aria-describedby="userHelp"
+         {{#if username}}value= {{username}}{{/if}}>
+        <div id="userHelp" class="form-text">The username is case sensitive</div>
+      </div>
+      <div class="col-lg d-grid">
+        <label for="phone" class="form-label mt-2">Phone Number</label>
+        <input type="text" name="phone" class="form-control" id="phone" aria-describedby="phoneHelp"
+         {{#if phone}}value= {{phone}}{{/if}}>
+        <div id="phoneHelp" class="form-text">Please use the format: xxx-xxx-xxxx</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg d-grid">
+        <button type="submit" class="btn btn-dark mt-4">Search</button>
+      </div>
+      <div class="col-lg d-grid">
+        <button type="reset" class="btn btn-dark mt-4">Clear Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-4 text-center">
+    {{#if users}}
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Phone Number</th>
+          <th>Books Borrowed</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+        <tr>
+          <td>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="userSelect" id="{{username}}" value="{{username}}" onchange="this.form.submit();"{{#if checked}}checked{{/if}} />
+              <label class="form-check-label" for="{{username}}">
+                {{username}}
+              </label>
+            </div>
+          </td>
+          <td>{{phone}}</td>
+          <td>
+            {{#each borrowed_books}}
+              {{title}}&nbsp;&nbsp;
+            {{/each}}
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+    No user with your criteria exists in the database.
+    {{/if}}
+  </div>
+  {{#if userSelect}}
+  <div class="rounded border border-2 bg-light  p-4 m-4">
+    <div class="text-center">
+      <label class="form-label mb-2 mt-2 form-label-xlg">Select the book you want to return:</label>
+    </div>
+  </div>
+  <div class="m-4 text-center">
+    {{#if user.borrowed_books}}
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Inventory count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each user.borrowed_books}}
+        <tr>
+          <td>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="bookSelect" id="{{id}}" value="{{id}}" onchange="this.form.submit();" {{#if checked}}checked{{/if}} />
+              <label class="form-check-label" for="{{id}}">
+                {{id}}
+              </label>
+            </div>
+          </td>
+          <td>{{title}}</td>
+          <td>{{inventory_count}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+      User hasn't borrowed a book!
+    {{/if}}
+  </div>
+  {{/if}}
+
+  {{#if bookSelect}}
+  <div class="d-grid m-4 text-center">
+    <button type="submit" class="btn btn-success my-3" onclick="this.form.elements['return'].value='true';">Return</button>
+  </div>
+  {{/if}}
+
+  <input type="hidden" id="return" name="return" value="false">
+</form>
+
+{{#if success}}
+<div class="m-4 p-3 text-center bg-success text-white rounded-pill border border-2">
+  Book was successfully returned!
+</div>
+{{/if}}
+{{#if error}}
+<div class="m-4 p-3 text-center bg-danger text-white rounded-pill border border-2">
+  Couldn't return the book! <br>
+  Error: {{error}}
+</div>
+{{/if}}
