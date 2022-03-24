@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ddehghani/4020a2.git"
+    "url": "git+https://github.com/ddehghani/Assignment-2.git"
   },
   "author": "Davood Dehghani",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ddehghani/4020a2/issues"
+    "url": "https://github.com/ddehghani/Assignment-2/issues"
   },
-  "homepage": "https://github.com/ddehghani/4020a2#readme",
+  "homepage": "https://github.com/ddehghani/Assignment-2#readme",
   "dependencies": {
     "winston": "^3.6.0"
   }
