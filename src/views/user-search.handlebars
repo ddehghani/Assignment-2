@@ -41,7 +41,7 @@
         <td>{{phone}}</td>
         <td>
           {{#each borrowed_books}}
-            {{title}}&nbsp;&nbsp;
+            <a class="link-light" href="http://localhost:8889/book/search?id={{id}}&title={{title}}">{{title}}</a>&nbsp;&nbsp;
           {{/each}}
         </td>
       </tr>
