@@ -7,8 +7,12 @@ module.exports = {
       ...query.id  && {'id': query.id},
       ...query.title  && {'title': query.title}
     }
-    const books = await Book.find(bookQuery).lean()
-    return res.render('book-search',{...bookQuery, books})
+    try {
+      const books = await Book.find(bookQuery).lean()
+      return res.render('book-search',{...bookQuery, books})
+    } catch (e) {
+      return res.render('book-search',{...bookQuery})
+    }
   },
 
    //Create a new book

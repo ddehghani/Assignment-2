@@ -8,8 +8,12 @@ module.exports = {
       ...query.username  && {'username': query.username},
       ...query.phone  && {'phone': query.phone}
     }
-    const users = await User.find(userQuery).populate('borrowed_books').lean()
-    return res.render('user-search',{...userQuery, users})
+    try {
+      const users = await User.find(userQuery).populate('borrowed_books').lean()
+      return res.render('user-search',{...userQuery, users})
+    } catch (e) {
+      return res.render('user-search',{...userQuery})
+    }
   },
 
   //Create a new user
