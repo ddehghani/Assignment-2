@@ -1,0 +1,30 @@
+
+<input type="hidden" id="username" name="username" value="{{username}}">
+<input type="hidden" id="room" name="room" value="{{room}}">
+<div class="rounded border border-2 bg-light p-3 m-4" style='height: calc(100vh - 210px);'>
+  <div class="hstack gap-3 h-100">
+    <div class="bg-light p-1 vstack side-bar" style="width: 25%; min-width:200px; max-width:270px;">
+      <div class="align-items-center my-auto">
+      <h3><i class="fas fa-comments"></i> Room Name:</h3>
+      <h2 id="room-name"></h2>
+      <h3><i class="fas fa-users"></i> Users</h3>
+      <ul id="users"></ul>
+      </div>
+      <div class="d-grid mt-auto">
+        <button type="button" class="btn btn-danger" id="leaveBtn"><i class="fa-solid fa-person-walking-arrow-right"></i> &nbsp; Leave</button>
+      </div>
+    </div>
+    <div class="vr"></div>
+    <div class="bg-light w-100 h-100 overflow-scroll" id="chat-messages"></div>
+  </div>
+</div>
+<form class="fixed-bottom d-flex p-4 bg-dark" id="chat-form">
+  <div class="d-inline-block w-100">
+    <input type="text" name="message" class="form-control" id="message" placeholder="Your message">
+  </div>
+  <div class="d-inline-block ms-4 w-auto">
+    <button type="submit" class="btn btn-light px-4" id="submitBtn" style="width: 130px;"><i class="fa-solid fa-paper-plane"></i> &nbsp; Send</button>
+  </div>
+</form>
+<script src="/socket.io/socket.io.js"></script>
+<script src="../scripts/chat.js"></script>

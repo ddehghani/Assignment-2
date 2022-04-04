@@ -1,5 +1,5 @@
 const {Schema, model} = require('mongoose')
-const {logger} = require('../utils')
+const {logger} = require('../utils/utils')
 
 const UserSchema = new Schema({
   username: {

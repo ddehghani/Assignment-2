@@ -1,0 +1,32 @@
+<form action="../forum" method="POST">
+  <div class="rounded border border-2 bg-light  p-4 m-4">
+    <div class="row">
+      <div class="col-lg d-grid">
+        <label for="username" class="form-label mt-2">Username</label>
+        <input type="text" name="username" class="form-control" id="username">
+      </div>
+      <div class="col-lg d-grid">
+        <label for="room" class="form-label mt-2">Room</label>
+        <select class="form-select" name="room" id="room">
+          <option selected value="unselected">Select the forum you wish to join</option>
+          {{#each books}}
+          <option {{#if selected}}selected{{/if}} value="{{id}}">{{title}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg d-grid">
+        <button type="submit" class="btn btn-dark mt-4" id="submitBtn" disabled>Join Forum</button>
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  const roomSelect = document.getElementById('room');
+  const usernameText = document.getElementById('username');
+  const submitBtn = document.getElementById('submitBtn');
+  const btnDisabler = (e) => {submitBtn.disabled = roomSelect.value == "unselected" || !usernameText.value}
+  roomSelect.addEventListener('change', btnDisabler);
+  usernameText.addEventListener('input', btnDisabler);
+</script>

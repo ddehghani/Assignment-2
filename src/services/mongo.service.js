@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const {logger} = require('../utils')
+const {logger} = require('../utils/utils')
 
 module.exports = (url) => {
   if (!url) {
