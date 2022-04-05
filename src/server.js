@@ -1,4 +1,4 @@
-const mongodb_url = 'mongodb+srv://david:123david@cluster0.hvmuy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const mongodb_url = ''
 
 const express = require('express')
 const hbs = require('express-handlebars')
